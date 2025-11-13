@@ -1,0 +1,41 @@
+nodes: 1
+gpus: 1 # I recommend always assigning 1 GPU to 1 node
+nr: 0 # machine nr. in node (0 -- nodes - 1)
+dataparallel: 0 # Use DataParallel instead of DistributedDataParallel
+workers: 6
+from_files: True
+pkl_file: "/knowledge/image_node_embedding.pkl"  # knowledge embeddings for image nodes
+csv_file: "/gpfsdswork/projects/rech/dvj/uyk23wk/ConVIRT/roco-list.csv"
+root_dir: "/gpfsscratch/rech/dvj/uyk23wk/roco-dataset-master/data/train/radiology/images"
+val_csv_file: "/gpfsdswork/projects/rech/dvj/uyk23wk/ConVIRT/val-roco-list.csv"
+val_root_dir: "/gpfsscratch/rech/dvj/uyk23wk/roco-dataset-master/data/validation/radiology/images"
+log_loss_dir: "/gpfsdswork/projects/rech/dvj/uyk23wk/logs"
+
+# train options
+seed: 42 
+batch_size: 2
+image_size: 224
+start_epoch: 0
+epochs: 20
+pretrain: True
+training_temperature: 15
+criterion: "contrastive"
+track: True
+
+# model options
+vit: "clip_align@ViT-B/16"
+bert: "/home/wxy/Download/biogpt"
+emb: 1
+
+# loss options
+optimizer: "Adam" # or LARS (experimental)
+lr: 3e-6
+weight_decay: 1.0e-6 # "optimized using LARS [...] and weight decay of 10−6"
+temperature: 0.1 # see appendix B.7.: Optimal temperature under different batch sizes
+
+# reload options
+model_path: "/home/wxy/xiaoyang/checkpoint/local" # set to the directory containing `checkpoint_##.tar`
+epoch_num: 20 # set to checkpoint number
+reload: False
+
+
