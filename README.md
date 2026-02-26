@@ -1,4 +1,6 @@
 # QwenCLIP
+This is the implementation of [ISBI26]:QwenCLIP: Boosting Medical Vision-Language Pretraining via LLM Embeddings and Prompt tuning
+
 
 <img src="img/overview.svg">
 
